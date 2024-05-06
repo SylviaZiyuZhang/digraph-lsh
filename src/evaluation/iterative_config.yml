@@ -1,0 +1,35 @@
+general:
+  phases_to_skip: 3
+  timestamp: '2024-03-23 19:35:30.704488'
+
+gen_dag:
+  ground_truth_dags: 10
+  num_nodes: 10
+  edge_prob: 0.5
+  edge_weight_range: [-10, 10]
+  edge_noise_sd_range: [0.001, 2]
+
+gen_dataset:
+  datasets_per_ground_truth_dag: 10
+  num_points: 1000
+  min_source_val: -10
+  max_source_val: 10
+
+gen_starting_dag:
+  starting_dags: 10
+  num_nodes: 10
+  edge_prob: 0.5
+  edge_weight_range: [-10, 10]
+  edge_noise_sd_range: [0.001, 2]
+
+run_eccs:
+  num_steps: 10
+  num_tries_for_random_method: 10
+  methods:
+    [
+      "best_single_edge_change",
+      "best_single_adjustment_set_change",
+      "best_single_adjustment_set_change_naive",
+      "random_single_edge_change",
+      #"astar_single_edge_change",
+    ]

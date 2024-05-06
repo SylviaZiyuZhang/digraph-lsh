@@ -1,0 +1,62 @@
+2024-03-15 01:14:50.207006 Running pc with fisherz
+2024-03-15 01:14:50.208248 Error running <function CausalDiscovery.run_with_timer.<locals>.run_pc at 0x74298ff6c0e0>: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.
+2024-03-15 01:14:50.208329 Done running pc with fisherz. Took 0.000 seconds
+2024-03-15 01:17:24.197970 Running pc with fisherz
+2024-03-15 01:17:24.199226 Error running <function CausalDiscovery.run_with_timer.<locals>.run_pc at 0x73045e7940e0>: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.
+2024-03-15 01:17:24.199310 Done running pc with fisherz. Took 0.000 seconds
+2024-03-15 01:18:05.487079 Running pc with kci
+2024-03-15 01:19:02.976773 Writing out pc with kci
+2024-03-15 01:19:03.160542 Done running pc with kci. Took 57.000 seconds
+2024-03-15 01:20:17.759830 Running pc with chisq
+2024-03-15 01:20:17.925717 Done running pc with chisq. Took 0.000 seconds
+2024-03-15 01:25:21.118238 Running pc with gsq
+2024-03-15 01:25:21.345330 Done running pc with gsq. Took 0.000 seconds
+2024-03-15 01:26:07.530995 Running pc with gsq
+2024-03-15 01:26:07.757141 Done running pc with gsq. Took 0.000 seconds
+2024-03-15 01:26:16.434062 Running fci with gsq
+2024-03-15 01:26:16.660437 Done running fci with gsq. Took 0.000 seconds
+2024-03-15 01:26:33.211483 Running lingam with default
+/home/markakis/eccs/eccs-venv/lib/python3.11/site-packages/sklearn/decomposition/_fastica.py:128: ConvergenceWarning: FastICA did not converge. Consider increasing tolerance or the maximum number of iterations.
+  warnings.warn(
+2024-03-15 01:26:33.356656 Writing out lingam with default
+2024-03-15 01:26:33.356725 Error running <function CausalDiscovery.run_with_timer.<locals>.run_lingam at 0x737d427cc040>: '1 [label=-8.82]' is not in list
+2024-03-15 01:26:33.356788 Done running lingam with default. Took 0.000 seconds
+2024-03-15 01:26:53.337010 Running pc with kci
+2024-03-15 01:27:46.712510 Writing out pc with kci
+2024-03-15 01:27:46.872838 Done running pc with kci. Took 53.000 seconds
+2024-03-15 01:45:59.719453 Running pc with kci
+2024-03-15 01:46:53.611670 Writing out pc with kci
+2024-03-15 01:46:53.746722 Done running pc with kci. Took 54.000 seconds
+2024-03-15 01:49:39.495026 Running pc with kci
+2024-03-15 01:50:38.890911 Error running <function CausalDiscovery.run_with_timer.<locals>.run_pc at 0x76c0c60700e0>: too many values to unpack (expected 2)
+2024-03-15 01:50:38.891368 Done running pc with kci. Took 59.000 seconds
+2024-03-15 01:51:44.121593 Running pc with kci
+2024-03-15 01:52:39.143451 Error running <function CausalDiscovery.run_with_timer.<locals>.run_pc at 0x7e3db13880e0>: too many values to unpack (expected 2)
+2024-03-15 01:52:39.144129 Done running pc with kci. Took 55.000 seconds
+2024-03-15 17:46:33.274901 Running pc with kci
+2024-03-15 17:46:42.277708 Error running <function CausalDiscovery.run_with_timer.<locals>.run_pc at 0x2ac6c9e50>: too many values to unpack (expected 2)
+2024-03-15 17:46:42.277835 Done running pc with kci. Took 9.000 seconds
+2024-03-15 17:51:49.850663 Running pc with kci
+2024-03-15 17:51:59.334392 Error running <function CausalDiscovery.run_with_timer.<locals>.run_pc at 0x15fb13f70>: too many values to unpack (expected 2)
+2024-03-15 17:51:59.334560 Done running pc with kci. Took 9.000 seconds
+2024-03-15 17:52:17.531280 Running pc with kci
+2024-03-15 17:52:26.551557 Error running <function CausalDiscovery.run_with_timer.<locals>.run_pc at 0x29c251f70>: too many values to unpack (expected 2)
+2024-03-15 17:52:26.551743 Done running pc with kci. Took 9.000 seconds
+2024-03-15 17:53:08.239738 Running pc with kci
+2024-03-15 17:53:18.235010 Error running <function CausalDiscovery.run_with_timer.<locals>.run_pc at 0x299493f70>: too many values to unpack (expected 2)
+2024-03-15 17:53:18.235197 Done running pc with kci. Took 9.000 seconds
+2024-03-15 17:53:49.117685 Running pc with kci
+2024-03-15 17:53:58.260724 Error running <function CausalDiscovery.run_with_timer.<locals>.run_pc at 0x16d926f70>: too many values to unpack (expected 2)
+2024-03-15 17:53:58.260902 Done running pc with kci. Took 9.000 seconds
+2024-03-15 17:54:30.078077 Running pc with kci
+2024-03-15 17:54:39.828785 Error running <function CausalDiscovery.run_with_timer.<locals>.run_pc at 0x2a3ca6f70>: too many values to unpack (expected 2)
+2024-03-15 17:54:39.828977 Done running pc with kci. Took 9.000 seconds
+2024-03-15 17:55:24.142238 Running pc with kci
+2024-03-15 17:55:33.387912 Error running <function CausalDiscovery.run_with_timer.<locals>.run_pc at 0x2a58e7f70>: too many values to unpack (expected 2)
+2024-03-15 17:55:33.388110 Done running pc with kci. Took 9.000 seconds
+2024-03-15 17:56:26.511654 Running pc with kci
+2024-03-15 17:56:36.784447 Error running <function CausalDiscovery.run_with_timer.<locals>.run_pc at 0x2a1b66f70>: too many values to unpack (expected 2)
+2024-03-15 17:56:36.784778 Done running pc with kci. Took 10.000 seconds
+2024-03-15 17:57:32.928722 Running pc with kci
+2024-03-15 17:57:42.057561 Error running <function CausalDiscovery.run_with_timer.<locals>.run_pc at 0x2a3051040>: too many values to unpack (expected 2)
+2024-03-15 17:57:42.057755 Done running pc with kci. Took 9.000 seconds

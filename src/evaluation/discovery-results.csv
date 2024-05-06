@@ -1,0 +1,43 @@
+dataset_name,method_name,option,result,time
+dag_b90ba55a_dataset_a7918e64,pc,fisherz,exception: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.,
+dataset_name,method_name,option,result,time
+dag_b90ba55a_dataset_a7918e64,pc,fisherz,exception: Data correlation matrix is singular. Cannot run fisherz test. Please check your data.,
+dataset_name,method_name,option,result,time
+dag_b90ba55a_dataset_a7918e64,pc,kci,success,57
+dataset_name,method_name,option,result,time
+dag_b90ba55a_dataset_a7918e64,pc,chisq,empty,0
+dataset_name,method_name,option,result,time
+dag_b90ba55a_dataset_a7918e64,pc,gsq,empty,0
+dataset_name,method_name,option,result,time
+dag_b90ba55a_dataset_a7918e64,pc,gsq,empty,0
+dataset_name,method_name,option,result,time
+dag_b90ba55a_dataset_a7918e64,fci,gsq,empty,0
+dataset_name,method_name,option,result,time
+dag_b90ba55a_dataset_a7918e64,lingam,default,success,0
+dag_b90ba55a_dataset_a7918e64,lingam,default,exception: '1 [label=-8.82]' is not in list,
+dataset_name,method_name,option,result,time
+dag_b90ba55a_dataset_a7918e64,pc,kci,success,53
+dataset_name,method_name,option,result,time
+dag_b90ba55a_dataset_a7918e64,pc,kci,success,53
+dataset_name,method_name,option,result,time
+dag_b90ba55a_dataset_a7918e64,pc,kci,exception: too many values to unpack (expected 2),
+dataset_name,method_name,option,result,time
+dag_b90ba55a_dataset_a7918e64,pc,kci,exception: too many values to unpack (expected 2),
+dataset_name,method_name,option,result,time
+dag_b9ea0d1d_dataset_35d898b8,pc,kci,exception: too many values to unpack (expected 2),
+dataset_name,method_name,option,result,time
+dag_b9ea0d1d_dataset_35d898b8,pc,kci,exception: too many values to unpack (expected 2),
+dataset_name,method_name,option,result,time
+dag_b9ea0d1d_dataset_35d898b8,pc,kci,exception: too many values to unpack (expected 2),
+dataset_name,method_name,option,result,time
+dag_b9ea0d1d_dataset_35d898b8,pc,kci,exception: too many values to unpack (expected 2),
+dataset_name,method_name,option,result,time
+dag_b9ea0d1d_dataset_35d898b8,pc,kci,exception: too many values to unpack (expected 2),
+dataset_name,method_name,option,result,time
+dag_b9ea0d1d_dataset_35d898b8,pc,kci,exception: too many values to unpack (expected 2),
+dataset_name,method_name,option,result,time
+dag_b9ea0d1d_dataset_35d898b8,pc,kci,exception: too many values to unpack (expected 2),
+dataset_name,method_name,option,result,time
+dag_b9ea0d1d_dataset_35d898b8,pc,kci,exception: too many values to unpack (expected 2),
+dataset_name,method_name,option,result,time
+dag_b9ea0d1d_dataset_35d898b8,pc,kci,exception: too many values to unpack (expected 2),

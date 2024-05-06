@@ -1,0 +1,65 @@
+
+gen_dag: 
+  enabled: False
+  num_nodes: 5
+  edge_prob: 0.5
+  edge_weight_range: [-10,10]
+  edge_noise_sd_range: [0.001, 2]
+
+load_dag:
+  enabled: True
+  path: '../../datasets/evaluation'
+  dag_name: 'dag_b9ea0d1d'
+
+exit_after_1: False
+
+gen_dataset:
+  enabled: False
+  num_points: 1000
+  min_source_val: -10
+  max_source_val: 10
+
+load_dataset:
+  enabled: True
+  path: '../../datasets/evaluation'
+  dataset_name: 'dag_b9ea0d1d_dataset_35d898b8'
+
+exit_after_2: False
+
+gen_starting_graph:
+  enabled: False
+  method: 'pc'
+  option: 'kci'
+  out_path: '../../datasets/evaluation'
+
+load_starting_graph:
+  enabled: False
+  path: '../../datasets/evaluation'
+  method: 'pc'
+  option: 'kci'
+
+random_starting_graph:
+  enabled: False
+  num_nodes: 5
+  edge_prob: 0.5
+  edge_weight_range: [-10,10]
+  edge_noise_sd_range: [0.001, 2]
+
+load_random_starting_graph:
+  enabled: True
+  path: '../../datasets/evaluation'
+  dag_name: 'dag_b9ea0d1d'
+
+exit_after_3: False
+
+run_eccs:
+  enabled: True
+  treatment: '2'
+  outcome: '4'
+  num_steps: 10
+  method: 'best_single_edge_change'
+
+
+
+
+
