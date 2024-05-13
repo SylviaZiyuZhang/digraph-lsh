@@ -1,7 +1,7 @@
 import networkx as nx
 import mmh3
 
-hash_mod = 1000000
+hash_mod = 1000
 
 
 def binarize_adj_matrix(g):
@@ -98,5 +98,36 @@ def smart_jaccard_lsh(g, num_hashes, seed):
             if hash_val < min_hash:
                 min_hash = hash_val
 
-        minhash_values.append(min_hash)
+        minhash_values.append(min_hash % hash_mod)
     return minhash_values
+
+
+class LSHIndex:
+
+    def __init__(self, seed, num_tables):
+        self.hash_tables = [[[] for _ in range(hash_mod)] for _ in range(num_tables)] 
+        self.seed = seed
+        self.num_tables = num_tables
+
+    def add_graph(self, g):
+        hash_values = smart_jaccard_lsh(g, self.num_tables, self.seed)
+        for table, hash_val in enumerate(hash_values):
+            self.hash_tables[table][hash_val].append(g)
+
+    def query(self, g):
+        best_similarity = 0
+        best_graph = None
+        num_explored = 0
+        hash_values = smart_jaccard_lsh(g, self.num_tables, self.seed)  # Compute the hash values for the graph g
+        for table, hash_val in enumerate(hash_values):
+            bucket = self.hash_tables[table][hash_val]  # Retrieve the bucket corresponding to the hash value in each table
+            for graph in bucket:
+                similarity = brute_force_distance(g, graph)
+                if similarity > best_similarity and similarity != 1.0:
+                    best_similarity = similarity
+                    best_graph = graph
+                    num_explored += 1
+                if num_explored == 3 * self.num_tables:
+                    return best_graph, best_similarity
+
+        return best_graph, best_similarity

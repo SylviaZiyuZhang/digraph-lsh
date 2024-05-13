@@ -1,6 +1,19 @@
 # %%
+def setup_notebook():
+    try:
+        from IPython import get_ipython
+
+        ipython = get_ipython()
+        ipython.magic("load_ext autoreload")
+        ipython.magic("autoreload 2")
+
+    except:
+        pass
+
+setup_notebook()
+
 import glob
-from graph_lsh import brute_force_distance, naive_jaccard_lsh, smart_jaccard_lsh
+from graph_lsh import brute_force_distance, smart_jaccard_lsh, LSHIndex
 import networkx as nx
 import json
 from tqdm import tqdm
@@ -8,6 +21,8 @@ import pickle
 import matplotlib.pyplot as plt
 import numpy as np
 import os
+
+
 
 # %%
 folder = "dotfiles/sae-features_lin-effects_sum-over-pos_nsamples8192_nctx64"
@@ -62,45 +77,15 @@ if not os.path.exists("all_distances.npy"):
 
 # %%
 
-# Jaccard LSH
-if not os.path.exists("all_distances_jaccard.npy"):
-    lsh_vectors = []
-    seed = 42
-    num_lsh_hash_funcs = 128
-    for graph_i in tqdm(graphs):
-        if graph_i is None:
-            lsh_vectors.append(None)
-            continue
-        hashes = smart_jaccard_lsh(graph_i, num_lsh_hash_funcs, seed)
-        lsh_vectors.append(np.array(hashes))
 
-    all_distances_jaccard = []
-    for i in tqdm(range(len(graphs))):
-        distances = []
-        for j in range(len(graphs)):
-            if lsh_vectors[i] is None or lsh_vectors[j] is None:
-                continue
-            distances.append(np.mean(lsh_vectors[i] == lsh_vectors[j]))
-        all_distances_jaccard.append(distances)
-
-    np.save(
-        "all_distances_jaccard.npy",
-        np.array([d for d in all_distances_jaccard if len(d) > 0]),
-    )
-
-# %%
-
-all_distances_jaccard = np.load("all_distances_jaccard.npy")
 all_distances = np.load("all_distances.npy")
 
 # Set diagonal to 0
 all_distances[np.diag_indices(all_distances.shape[0])] = 0
-all_distances_jaccard[np.diag_indices(all_distances_jaccard.shape[0])] = 0
 # %%
 
 
 plt.hist(all_distances.flatten(), bins=100, alpha=0.5, label="Brute force")
-plt.hist(all_distances_jaccard.flatten(), bins=100, alpha=0.5, label="Jaccard LSH")
 plt.yscale("log")
 
 # %%
@@ -184,3 +169,59 @@ def output_original_graphs(i, j):
 
 output_original_graphs(338, 29)
 # %%
+
+num_lsh_hash_funcs = 32
+
+# Jaccard LSH
+if not os.path.exists(f"all_distances_jaccard_{num_lsh_hash_funcs}.npy"):
+    lsh_vectors = []
+    seed = 42
+    for graph_i in tqdm(graphs):
+        if graph_i is None:
+            lsh_vectors.append(None)
+            continue
+        hashes = smart_jaccard_lsh(graph_i, num_lsh_hash_funcs, seed)
+        lsh_vectors.append(np.array(hashes))
+
+    all_distances_jaccard = []
+    for i in tqdm(range(len(graphs))):
+        distances = []
+        for j in range(len(graphs)):
+            if lsh_vectors[i] is None or lsh_vectors[j] is None:
+                continue
+            distances.append(np.mean(lsh_vectors[i] == lsh_vectors[j]))
+        all_distances_jaccard.append(distances)
+
+    np.save(
+        f"all_distances_jaccard_{num_lsh_hash_funcs}.npy",
+        np.array([d for d in all_distances_jaccard if len(d) > 0]),
+    )
+
+# %%
+
+all_distances_jaccard = np.load(f"all_distances_jaccard_{num_lsh_hash_funcs}.npy")
+all_distances_jaccard[np.diag_indices(all_distances_jaccard.shape[0])] = 0
+
+plt.hist(all_distances.flatten(), bins=100, alpha=0.5, label="Brute force")
+plt.hist(all_distances_jaccard.flatten(), bins=100, alpha=0.5, label="Jaccard LSH")
+plt.yscale("log")
+
+# %%
+
+lsh_index = LSHIndex(seed=42, num_tables=4)
+
+
+for i, g in tqdm(enumerate(non_none_graphs)):
+    lsh_index.add_graph(g)
+
+# %%
+
+num_matches = 0 
+for i, g in tqdm(enumerate(non_none_graphs)):
+    closest_found_neighbor = lsh_index.query(g)
+    gt_neighbor = np.argmax(all_distances[i])    
+    if closest_found_neighbor[0] == non_none_graphs[gt_neighbor]:
+        num_matches += 1
+# %%
+
+print(num_matches / len(non_none_graphs))
