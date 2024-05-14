@@ -1,6 +1,7 @@
 graph_lsh_env
 __pycache__
-all_distances.npy
 graphs_contexts.pkl
 outputs
 dotfiles
+*.npy
+*.pkl

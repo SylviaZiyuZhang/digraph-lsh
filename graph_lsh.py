@@ -64,6 +64,14 @@ def combine(hash_1, hash_2):
         hash_2 = temp
     return hash_1 * hash_mod + hash_2
 
+def combine_list(hashes):
+    if len(hashes) == 1:
+        return hashes[0]
+    combined = combine(hashes[0], hashes[1])
+    for i in range(2, len(hashes)):
+        combined = combine(combined, hashes[i])
+    return combined
+
 
 def smart_jaccard_lsh(g, num_hashes, seed):
     minhash_values = []
@@ -104,22 +112,27 @@ def smart_jaccard_lsh(g, num_hashes, seed):
 
 class LSHIndex:
 
-    def __init__(self, seed, num_tables):
+    def __init__(self, seed, num_tables, hashes_per_table):
         self.hash_tables = [[[] for _ in range(hash_mod)] for _ in range(num_tables)] 
         self.seed = seed
         self.num_tables = num_tables
+        self.hashes_per_table = hashes_per_table
 
     def add_graph(self, g):
-        hash_values = smart_jaccard_lsh(g, self.num_tables, self.seed)
-        for table, hash_val in enumerate(hash_values):
+        hash_values = smart_jaccard_lsh(g, self.num_tables * self.hashes_per_table, self.seed)
+        for table in range(self.num_tables):
+            hash_val = combine_list(hash_values[table * self.hashes_per_table:(table + 1) * self.hashes_per_table])
+            hash_val = hash_val % hash_mod
             self.hash_tables[table][hash_val].append(g)
 
     def query(self, g):
         best_similarity = 0
         best_graph = None
         num_explored = 0
-        hash_values = smart_jaccard_lsh(g, self.num_tables, self.seed)  # Compute the hash values for the graph g
-        for table, hash_val in enumerate(hash_values):
+        hash_values = smart_jaccard_lsh(g, self.num_tables * self.hashes_per_table, self.seed)  # Compute the hash values for the graph g
+        for table in range(self.num_tables):
+            hash_val = combine_list(hash_values[table * self.hashes_per_table:(table + 1) * self.hashes_per_table])
+            hash_val = hash_val % hash_mod
             bucket = self.hash_tables[table][hash_val]  # Retrieve the bucket corresponding to the hash value in each table
             for graph in bucket:
                 similarity = brute_force_distance(g, graph)
@@ -128,6 +141,6 @@ class LSHIndex:
                     best_graph = graph
                     num_explored += 1
                 if num_explored == 3 * self.num_tables:
-                    return best_graph, best_similarity
+                    return best_graph, best_similarity, num_explored, True
 
-        return best_graph, best_similarity
+        return best_graph, best_similarity, num_explored, False
